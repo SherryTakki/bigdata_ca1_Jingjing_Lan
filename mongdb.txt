@@ -1,0 +1,7 @@
+#1.Getting started
+#Connect to a running mongo instance, use a database named `bigdata_ca1_firstname_lastname`. Use mongodump to submit a copy of your database when you have finished the assignment.
+#Document all your queries in a javascript file for submission. Where you are asked a question with a number document your answers to these questions as well as the code needed to find the answer.
+
+1.
+use bigdata_ca1_Jingjing_Lan
+
