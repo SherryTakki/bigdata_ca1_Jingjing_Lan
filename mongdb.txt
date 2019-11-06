@@ -182,3 +182,50 @@ db.movies.remove({title: "Pee Wee Herman's Big Adventure"})
 
 ###(2)delete the movie "Avatar"
 db.movies.remove({title: "Avatar"})
+
+#7.Relationships
+##1.Insert the following documents into a `users` collection
+###(1)username : GoodGuyGreg 
+###first_name : "Good Guy" 
+###last_name : "Greg"
+db.users.insert({username:"GoodGuyGreg", first_name:"Good Guy", last_name:"Greg"})
+
+###(2)username : ScumbagSteve 
+###full_name :
+###first : "Scumbag" 
+###last : "Steve"
+db.users.insert({username:"ScumbagSteve", fullname:{first: "Scumbag", last:"Steve"}})
+
+
+##2.Insert the following documents into a `posts` collection
+###(1)username : GoodGuyGreg 
+###title : Passes out at party 
+###body : Wakes up early and cleans house
+db.posts.insert({username:"GoodGuyGreg", title:"Passes out at party", body:"Wakes up early and cleans house"})
+
+###(2)username : GoodGuyGreg 
+###title : Steals your identity 
+###body : Raises your credit score
+db.posts.insert({username:"GoodGuyGreg", title:"Steals your identity", body:"Raises your credit score"})
+
+###(3)username : GoodGuyGreg 
+###title : Reports a bug in your code 
+###body : Sends you a Pull Request
+db.posts.insert({username:"GoodGuyGreg", title:"Reports a bug in your code", body:"Sends you a Pull Request"})
+
+###(4)username : ScumbagSteve 
+###title : Borrows something 
+###body : Sells it
+db.posts.insert({username:"ScumbagSteve", title:"Borrows something", body:"Sells it"})
+
+//db.posts.remove({title:"Borrows something"})
+###(5)username : ScumbagSteve 
+###title : Borrows everything 
+###body : The end
+db.posts.insert({username:"ScumbagSteve", title:"Borrows everything", body:"The end"})
+
+###(6)username : ScumbagSteve 
+###title : Forks your repo on github 
+###body : Sets to private
+db.posts.insert({username:"ScumbagSteve", title:"Forks your repo on github", body:"Sets to private"})
+
