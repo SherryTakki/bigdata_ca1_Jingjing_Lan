@@ -167,3 +167,26 @@ db.movies.update(
 db.movies.update(
 {"title":"Pulp Fiction"},
 {$set:{"actor":"Samuel L. Jackson"}})
+
+
+#5.Text Search
+
+###(1)1. find all movies that have a synopsis that contains the word "Bilbo" 
+mongod --set Parameter textSearchEnabled=true
+db.movies.ensureIndex({synopsis:"text"})
+db.movies.find({"$text":{"$search":"Bilbo"}}).pretty()
+
+###(2)2. find all movies that have a synopsis that contains the word "Gandalf" 
+db.movies.find({"$text":{"$search":"Gandalf"}}).pretty()
+
+#(3)3. find all movies that have a synopsis that contains the word "Bilbo" and not the word "Gandalf" 
+db.movies.find({$and:[{synopsis:{$regex:"Bilbo"}}, {synopsis:{$not:/Gandalf/}}]}).pretty()
+
+
+#4. find all movies that have a synopsis that contains the word "dwarves" or "hobbit" 
+db.movies.find({$or:[{synopsis:{$regex:"dwarves"}}, {synopsis:{$regex:/hobbit/}}]}).pretty()
+
+
+#5. find all movies that have a synopsis that contains the word "gold" and "dragon"
+db.movies.find({$and:[{synopsis:{$regex:"gold"}}, {synopsis:{$regex:"dragon"}}]}).pretty()
+
