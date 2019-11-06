@@ -40,9 +40,7 @@ actors:["John Travolta","Uma Thurman"]
 })
 
 
-
-
-##(4)title : Inglorious Basterds 
+##(3)title : Inglorious Basterds 
 ##writer : Quentin Tarantino 
 ##year : 2009 
 ##actors : [
@@ -58,7 +56,7 @@ actors:["Brad Pitt","Diane Kruger","Eli Roth"]
 })
 
 
-//(5)title: The Hobbit : An Unexpected Journey
+//(4)title: The Hobbit : An Unexpected Journey
 //	writer : J.R.R.Tolkein
 //	year : 2012
 //	franchise : The Hobbit
@@ -71,7 +69,7 @@ franchise:"The Hobbit"
 })
 
 
-//(6)title: The Hobbit : The Desolation of Smaug
+//(5)title: The Hobbit : The Desolation of Smaug
 //	writer : J.R.R.Tolkein
 //	year : 2013
 //	franchise : The Hobbit
@@ -84,7 +82,7 @@ franchise:"The Hobbit"
 })
 
 
-//(7)title: The Hobbit : The Battle of the Five Armies
+//(6)title: The Hobbit : The Battle of the Five Armies
 //	writer : J.R.R.Tolkein
 //	year : 2012
 //	franchise : The Hobbit
@@ -100,14 +98,14 @@ synopsis : "Bilbo and Company are forced to engage in a war against an array of 
 })
 
 
-//(8)title: Pee Wee Herman's Big Adventure
+//(7)title: Pee Wee Herman's Big Adventure
 
 db.movies.insert({
 title:"Pee Wee Herman's Big Adventure",
 })
 
 
-//(9)title: Avatar
+//(8)title: Avatar
 
 db.movies.insert({
 title:"Avatar",
@@ -178,3 +176,9 @@ db.movies.find({$or:[{synopsis:{$regex:"dwarves"}}, {synopsis:{$regex:/hobbit/}}
 #5. find all movies that have a synopsis that contains the word "gold" and "dragon"
 db.movies.find({$and:[{synopsis:{$regex:"gold"}}, {synopsis:{$regex:"dragon"}}]}).pretty()
 
+#6.Delete Documents
+###(1)delete the movie "Pee Wee Herman's Big Adventure"
+db.movies.remove({title: "Pee Wee Herman's Big Adventure"})
+
+###(2)delete the movie "Avatar"
+db.movies.remove({title: "Avatar"})
