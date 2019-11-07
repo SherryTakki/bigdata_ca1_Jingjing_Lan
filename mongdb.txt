@@ -229,3 +229,41 @@ db.posts.insert({username:"ScumbagSteve", title:"Borrows everything", body:"The 
 ###body : Sets to private
 db.posts.insert({username:"ScumbagSteve", title:"Forks your repo on github", body:"Sets to private"})
 
+##3.Insert the following documents into a `comments` collection
+
+###(1)username : GoodGuyGreg 
+###comment : Hope you got a good deal! 
+###post : [post_obj_id]
+###where [post_obj_id] is the ObjectId of the `posts` document: "Borrows something"
+db.comments.insert({username:"GoodGuyGreg", comment:"Hope you got a good deal!",
+post:db.posts.findOne({"title":"Borrows something"})["_id"]})
+
+###(2)username : GoodGuyGreg 
+###comment : What's mine is yours! 
+###post : [post_obj_id]
+###where [post_obj_id] is the ObjectId of the `posts` document: "Borrows everything"
+db.comments.insert({username:"GoodGuyGreg", comment:"What's mine is yours!",
+post:db.posts.findOne({"title":"Borrows everything"})["_id"]})
+
+###(3)username : GoodGuyGreg 
+###comment : Don't violate the licensing agreement! 
+###post : [post_obj_id]
+###where [post_obj_id] is the ObjectId of the `posts` document: "Forks your repo on github"
+db.comments.insert({username:"GoodGuyGreg", comment:"Don't violate the licensing agreement!",
+post:db.posts.findOne({"title":"Forks your repo on github"})["_id"]})
+
+###(4)username : ScumbagSteve 
+###comment : It still isn't clean 
+###post : [post_obj_id]
+###where [post_obj_id] is the ObjectId of the `posts` document: ""Passes out at party"
+db.comments.insert({username:"ScumbagSteve", comment:"It still isn't clean",
+post:db.posts.findOne({"title":"Passes out at party"})["_id"]})
+
+###(5)username : ScumbagSteve 
+###comment : Denied your PR cause I found a hack 
+###post : [post_obj_id]
+###where [post_obj_id] is the ObjectId of the `posts` document: "Reports a bug in your code"
+db.comments.insert({username:"ScumbagSteve", comment:"Denied your PR cause I found a hack",
+post:db.posts.findOne({"title":"Reports a bug in your code"})["_id"]})
+
+
