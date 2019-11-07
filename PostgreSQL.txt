@@ -1,0 +1,13 @@
+postgreSQL:
+\l show database
+
+create database bigdata_ca1_jingjing_lan
+
+\c bigdata_ca1_jingjing_lan
+collect database
+
+#2. Insert Documents
+##Insert the following documents into a `movies` collection.
+create table movies(
+movie_id serial,title text NOT NULL,writer text,year int, actors text,
+franchise text,synopsis text);
