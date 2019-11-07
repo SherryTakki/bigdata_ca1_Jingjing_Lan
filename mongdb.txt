@@ -267,3 +267,28 @@ db.comments.insert({username:"ScumbagSteve", comment:"Denied your PR cause I fou
 post:db.posts.findOne({"title":"Reports a bug in your code"})["_id"]})
 
 
+#8.Querying related collections
+##1. find all users 
+db.users.find().pretty()
+
+##2. find all posts 
+db.posts.find().pretty()
+
+##3. find all posts that was authored by "GoodGuyGreg"
+db.posts.find({username:"GoodGuyGreg"}).pretty()
+ 
+##4. find all posts that was authored by "ScumbagSteve" 
+db.posts.find({username: "ScumbagSteve"}).pretty()
+
+##5. find all comments
+db.comments().pretty()
+ 
+##6. find all comments that was authored by "GoodGuyGreg"
+db.comments.find({username: "GoodGuyGreg"}).pretty()
+ 
+##7. find all comments that was authored by "ScumbagSteve" 
+db.comments.find({username: "ScumbagSteve"}).pretty()
+
+##8. find all comments belonging to the post "Reports a bug in your code"
+db.comments.find({post:db.posts.findOne({title:"Reports a bug in your code"})["_id"]}).pretty()
+
