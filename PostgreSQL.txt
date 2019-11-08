@@ -84,3 +84,31 @@ VALUES('The Hobbit : An Unexpected Journey','J.R.R.Tolkein',2012,'The Hobbit'),
 
 INSERT INTO movies(title) 
 VALUES('Pee Wee Herman''s Big Adventure'),('Avatar');
+
+
+#3.Query / Find Documents
+
+#(1) get all documents 
+select *from movies;
+
+
+#(2) get all documents with `writer` set to "Quentin Tarantino" 
+SELECT * FROM movies WHERE writer ='Quentin Tarantino';
+
+
+#(3)get all documents where `actors` include "Brad Pitt" 
+SELECT * FROM movies WHERE actors like '%Brad Pitt%';
+
+
+#(4)get all documents with `franchise` set to "The Hobbit" 
+SELECT * FROM movies WHERE franchise ='The Hobbit';
+#SELECT * FROM movies WHERE title like'%The Hobbit%';
+
+
+#(5)get all movies released in the 90s 
+SELECT * FROM movies WHERE year >1989 AND year <2000;
+
+
+#(6)get all movies released before the year 2000 or after 2010
+SELECT * FROM movies WHERE year >2010 OR year <2000;
+
