@@ -112,3 +112,60 @@ SELECT * FROM movies WHERE year >1989 AND year <2000;
 #(6)get all movies released before the year 2000 or after 2010
 SELECT * FROM movies WHERE year >2010 OR year <2000;
 
+
+#4.Update Documents
+#(1)1. add a synopsis to "The Hobbit: An Unexpected Journey" : 
+#"A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain
+#with a spirited group of dwarves to reclaim their mountain home
+#- and the gold within it - from the dragon Smaug." 
+"A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug." 
+
+UPDATE movies SET synopsis = 'A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug.'where title ='The Hobbit : An Unexpected Journey';
+
+
+#(2) add a synopsis to "The Hobbit: The Desolation of Smaug" : 
+#"The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring." 
+
+UPDATE movies SET synopsis='The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring.'where title ='The Hobbit : The Desolation of Smaug';
+
+#(3)3. add an actor named "Samuel L. Jackson" to the movie "Pulp Fiction"
+
+update movies set actors=concat(actors,',Samuel L. Jackson') where title ='Pulp Fiction';
+
+
+#5.Text Search
+
+###(1)1. find all movies that have a synopsis that contains the word "Bilbo" 
+mongod --set Parameter textSearchEnabled=true
+
+SELECT * FROM movies WHERE synopsis like '%Bilbo%';
+
+###(2)2. find all movies that have a synopsis that contains the word "Gandalf" 
+
+SELECT * FROM movies WHERE synopsis like '%Gandalf%';
+
+
+#(3)3. find all movies that have a synopsis that contains the word "Bilbo" and not the word "Gandalf" 
+
+select * from movies where synopsis like '%Bilbo%' and synopsis not like '%Gandalf%';
+
+
+#4. find all movies that have a synopsis that contains the word "dwarves" or "hobbit" 
+
+select * from movies where synopsis like '%dwarves%' or synopsis  like '%hobbit%';
+
+#5. find all movies that have a synopsis that contains the word "gold" and "dragon"
+
+select * from movies where synopsis like '%gold%' and synopsis  like '%dragon%';
+
+
+#6.Delete Documents
+###(1)delete the movie "Pee Wee Herman's Big Adventure"
+
+DELETE FROM movies WHERE title  = 'Pee Wee Herman''s Big Adventure';
+
+###(2)delete the movie "Avatar"
+
+DELETE FROM movies WHERE title  = 'Avatar';
+
+
