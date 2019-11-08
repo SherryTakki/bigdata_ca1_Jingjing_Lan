@@ -11,3 +11,76 @@ collect database
 create table movies(
 movie_id serial,title text NOT NULL,writer text,year int, actors text,
 franchise text,synopsis text);
+
+\d movies
+**show all tables from movies
+#2. Insert Documents
+##Insert the following documents into a `movies` collection.
+create table movies(
+movie_id serial,title text NOT NULL,writer text,year int, actors text,
+franchise text,synopsis text);
+
+
+###(1)title : Fight Club 
+###writer : Chuck Palahniuk 
+###year : 1999 
+###actors : [
+###Brad Pitt 
+###Edward Norton 
+###]
+
+INSERT INTO movies(title,writer,year,actors)	
+VALUES('Fight Club','Chuck Palahniuk ',1999,'Brad Pitt,Edward Norton');	
+
+##(2)title : Pulp Fiction 
+##writer : Quentin Tarantino 
+##year : 1994 
+##actors : [
+##John Travolta ,Uma Thurman ]
+
+
+##(3)title : Inglorious Basterds 
+##writer : Quentin Tarantino 
+##year : 2009 
+##actors : [
+##Brad Pitt,Diane Kruger,Eli Roth ]
+
+INSERT INTO movies(title,writer,year,actors)	
+VALUES('Pulp Fiction','Quentin Tarantino',1994,'John Travolta ,Uma Thurman'),
+('Inglorious Basterds ','Quentin Tarantino',2009,'Brad Pitt,Diane Kruger,Eli Roth');
+
+
+//(4)title: The Hobbit : An Unexpected Journey
+//	writer : J.R.R.Tolkein
+//	year : 2012
+//	franchise : The Hobbit
+
+
+
+//(5)title: The Hobbit : The Desolation of Smaug
+//	writer : J.R.R.Tolkein
+//	year : 2013
+//	franchise : The Hobbit
+
+##DROP TABLE movies;
+
+//(6)title: The Hobbit : The Battle of the Five Armies
+//	writer : J.R.R.Tolkein
+//	year : 2012
+//	franchise : The Hobbit
+//	synopsis : Bilbo and Company are forced to engage in a war against an array of 
+//  combatants and keep the Lonely Mountain from falling into the hands of a rising darkness.
+
+INSERT INTO movies(title,writer,year,franchise)	
+VALUES('The Hobbit : An Unexpected Journey','J.R.R.Tolkein',2012,'The Hobbit'),
+('The Hobbit : The Desolation of Smaug','J.R.R.Tolkein',2013,'The Hobbit'),
+('The Hobbit : The Battle of the Five Armies','J.R.R.Tolkein',2012,'Bilbo and Company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness');
+
+
+//(7)title: Pee Wee Herman's Big Adventure
+##'' =‘
+
+//(8)title: Avatar
+
+INSERT INTO movies(title) 
+VALUES('Pee Wee Herman''s Big Adventure'),('Avatar');
