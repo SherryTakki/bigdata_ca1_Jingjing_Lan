@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"bigdata_ca1_Jingjing_Lan.movies"},{"v":2,"key":{"_fts":"text","_ftsx":1},"name":"synopsis_text","ns":"bigdata_ca1_Jingjing_Lan.movies","weights":{"synopsis":1},"default_language":"english","language_override":"language","textIndexVersion":3}],"uuid":"cd90d73510d044d6aa7a1b6d727ea94a"}

@@ -270,4 +270,29 @@ insert into comments (post_id,username,comment)select post_id, 'ScumbagSteve', '
 insert into comments (post_id,username,comment)select post_id, 'ScumbagSteve', 'Denied your PR cause I found a hack' from posts where title in ('Reports a bug in your code');
 
 
+#8.Querying related collections
+##1. find all users 
+SELECT * FROM users;
 
+##2. find all posts 
+SELECT * FROM posts;
+
+##3. find all posts that was authored by "GoodGuyGreg"
+SELECT * FROM posts WHERE username = 'GoodGuyGreg';
+ 
+##4. find all posts that was authored by "ScumbagSteve" 
+SELECT * FROM posts WHERE username = 'ScumbagSteve';
+
+##5. find all comments
+SELECT * FROM comments;
+ 
+##6. find all comments that was authored by "GoodGuyGreg"
+SELECT * FROM comments WHERE username = 'GoodGuyGreg';
+ 
+##7. find all comments that was authored by "ScumbagSteve" 
+SELECT * FROM comments WHERE username = 'ScumbagSteve';
+
+##8. find all comments belonging to the post "Reports a bug in your code"
+SELECT * FROM comments WHERE post_id in ( select post_id from posts where title in ('Reports a bug in your code'));
+//
+SELECT c.* FROM comments c  join posts p on c.post_id = p.post_id where title = 'Reports a bug in your code';
