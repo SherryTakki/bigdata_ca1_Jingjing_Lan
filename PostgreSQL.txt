@@ -4,21 +4,20 @@ postgreSQL:
 create database bigdata_ca1_jingjing_lan
 
 \c bigdata_ca1_jingjing_lan
-collect database
+***collect database
 
 #2. Insert Documents
 ##Insert the following documents into a `movies` collection.
 create table movies(
 movie_id serial,title text NOT NULL,writer text,year int, actors text,
 franchise text,synopsis text);
+
+\dt 
+**show all tables from this database
 
 \d movies
-**show all tables from movies
-#2. Insert Documents
-##Insert the following documents into a `movies` collection.
-create table movies(
-movie_id serial,title text NOT NULL,writer text,year int, actors text,
-franchise text,synopsis text);
+**show all database from movies
+
 
 
 ###(1)title : Fight Club 
@@ -167,5 +166,108 @@ DELETE FROM movies WHERE title  = 'Pee Wee Herman''s Big Adventure';
 ###(2)delete the movie "Avatar"
 
 DELETE FROM movies WHERE title  = 'Avatar';
+
+
+#7.Relationships
+##1.Insert the following documents into a `users` collection
+###(1)username : GoodGuyGreg 
+###first_name : "Good Guy" 
+###last_name : "Greg"
+db.users.insert({username:"GoodGuyGreg", first_name:"Good Guy", last_name:"Greg"})
+
+create table users(
+user_id serial,username text,first_name text, last_name text,first text,last text);
+
+INSERT INTO users(username,first_name,last_name) VALUES('GoodGuyGreg','Good Guy','Greg');	
+
+
+###(2)username : ScumbagSteve 
+###full_name :
+###first : "Scumbag" 
+###last : "Steve"
+
+
+INSERT INTO users(username,first,last) VALUES('ScumbagSteve','Scumbag','Steve');	
+#need drop
+#select * from users;
+
+##2.Insert the following documents into a `posts` collection
+###(1)username : GoodGuyGreg 
+###title : Passes out at party 
+###body : Wakes up early and cleans house
+
+
+create table posts(post_id serial PRIMARY KEY,username text,title text,body text);
+
+###(2)username : GoodGuyGreg 
+###title : Steals your identity 
+###body : Raises your credit score
+
+
+
+###(3)username : GoodGuyGreg 
+###title : Reports a bug in your code 
+###body : Sends you a Pull Request
+
+
+###(4)username : ScumbagSteve 
+###title : Borrows something 
+###body : Sells it
+
+//db.posts.remove({title:"Borrows something"})
+###(5)username : ScumbagSteve 
+###title : Borrows everything 
+###body : The end
+
+###(6)username : ScumbagSteve 
+###title : Forks your repo on github 
+###body : Sets to private
+
+
+INSERT INTO posts(username,title,body) VALUES('GoodGuyGreg','Passes out at party','Wakes up early and cleans house'),
+('GoodGuyGreg','Steals your identity','Raises your credit score'),('GoodGuyGreg','Reports a bug in your code','Sends you a Pull Request'),
+('ScumbagSteve','Borrows something','sells it'),('ScumbagSteve','Borrows everything','The end'),
+('ScumbagSteve','Forks your repo on github','Sets to private');
+
+select * from posts;
+
+DROP TABLE comments;
+##3.Insert the following documents into a `comments` collection
+create table comments(comment_id serial,username text,comment text, post_id int  REFERENCES posts(post_id)); 
+PRIMARY	KEY	(country_code,	postal_code)
+
+###(1)username : GoodGuyGreg 
+###comment : Hope you got a good deal! 
+###post : [post_obj_id]
+###where [post_obj_id] is the ObjectId of the `posts` document: "Borrows something"
+
+insert into comments (post_id,username,comment)select post_id, 'GoodGuyGreg', 'Hope you got a good deal!'  from posts where title in ('Borrows something');
+
+###(2)username : GoodGuyGreg 
+###comment : What's mine is yours! 
+###post : [post_obj_id]
+###where [post_obj_id] is the ObjectId of the `posts` document: "Borrows everything"
+
+insert into comments (post_id,username,comment)select post_id, 'GoodGuyGreg', 'What''s mine is yours!'  from posts where title in ('Borrows everything');
+
+###(3)username : GoodGuyGreg 
+###comment : Don't violate the licensing agreement! 
+###post : [post_obj_id]
+###where [post_obj_id] is the ObjectId of the `posts` document: "Forks your repo on github"
+insert into comments (post_id,username,comment)select post_id, 'GoodGuyGreg', 'Don''t violate the licensing agreement!' from posts where title in ('Forks your repo on github');
+
+###(4)username : ScumbagSteve 
+###comment : It still isn't clean 
+###post : [post_obj_id]
+###where [post_obj_id] is the ObjectId of the `posts` document: ""Passes out at party"
+insert into comments (post_id,username,comment)select post_id, 'ScumbagSteve', 'It still isn''t clean' from posts where title in ('Passes out at party');
+
+
+###(5)username : ScumbagSteve 
+###comment : Denied your PR cause I found a hack 
+###post : [post_obj_id]
+###where [post_obj_id] is the ObjectId of the `posts` document: "Reports a bug in your code"
+insert into comments (post_id,username,comment)select post_id, 'ScumbagSteve', 'Denied your PR cause I found a hack' from posts where title in ('Reports a bug in your code');
+
 
 
